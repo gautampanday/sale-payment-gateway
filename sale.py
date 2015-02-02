@@ -428,6 +428,13 @@ class Sale:
 
         PaymentTransaction.capture([payment_transaction])
 
+    @classmethod
+    def copy(cls, sales, default=None):
+        if default is None:
+            default = {}
+        default['payments'] = None
+        return super(Sale, cls).copy(sales, default=default)
+
 
 class PaymentTransaction:
     "Gateway Transaction"
